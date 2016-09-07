@@ -157,7 +157,7 @@ public class OrderTestAnnotation {
     public void testCreateCustomerAnother() {
         Customer customer = new Customer();
         customer.setFirstName("Bill");
-        customer.setLastName("Chen");
+        customer.setLastName("Chen2");
         customer.setEmail("billchen@gmail.com");
         CustomerProfile customerProfile = new CustomerProfile();
         customer.setCustomerProfile(customerProfile);
@@ -191,7 +191,7 @@ public class OrderTestAnnotation {
     @Rollback(value = false)
     public void testCreateCustomerAndOrder() {
         Customer customer = new Customer();
-        customer.setFirstName("Siji");
+        customer.setFirstName("Another");
         customer.setLastName("Chen");
         customer.setEmail("chensiji1989@gmail.com");
         CustomerProfile customerProfile = new CustomerProfile();
