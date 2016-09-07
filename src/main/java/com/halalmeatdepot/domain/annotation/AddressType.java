@@ -1,4 +1,4 @@
-package com.halalmeatdepot.domain.Annotation;
+package com.halalmeatdepot.domain.annotation;
 
 /**
  * Created by vashishta on 9/1/16.

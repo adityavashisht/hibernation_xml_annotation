@@ -1,6 +1,6 @@
 package com.hmd.services;
 
-import com.halalmeatdepot.domain.Annotation.Customer;
+import com.halalmeatdepot.domain.annotation.Customer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;

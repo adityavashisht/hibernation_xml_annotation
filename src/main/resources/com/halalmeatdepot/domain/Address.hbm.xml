@@ -3,7 +3,7 @@
         "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.halalmeatdepot.domain.XML.Address" table="ADDRESS">
+    <class name="com.halalmeatdepot.domain.xml.Address" table="ADDRESS">
         <id name="id" column="ADDRESS_ID" type="long">
             <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
                 <param name="sequence_name">ADDR_SEQ</param>
@@ -17,11 +17,11 @@
         <property name="createDate" column="CREATE_DATE"/>
         <property name="addressType" column="ADDRESS_TYPE" not-null="true">
             <type name="org.hibernate.type.EnumType">
-                <param name="enumClass">com.halalmeatdepot.domain.XML.AddressType</param>
+                <param name="enumClass">com.halalmeatdepot.domain.xml.AddressType</param>
                 <param name="useNamed">true</param>
             </type>
         </property>
-        <many-to-one name="customerProfile" class="com.halalmeatdepot.domain.XML.CustomerProfile" column="customer_id"/>
+        <many-to-one name="customerProfile" class="com.halalmeatdepot.domain.xml.CustomerProfile" column="customer_id"/>
 
 
     </class>

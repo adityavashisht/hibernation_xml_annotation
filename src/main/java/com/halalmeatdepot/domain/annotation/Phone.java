@@ -1,4 +1,4 @@
-package com.halalmeatdepot.domain.Annotation;
+package com.halalmeatdepot.domain.annotation;
 
 import javax.persistence.Embeddable;
 

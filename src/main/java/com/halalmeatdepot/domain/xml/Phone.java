@@ -1,4 +1,4 @@
-package com.halalmeatdepot.domain.XML;
+package com.halalmeatdepot.domain.xml;
 
 /**
  * Created by vashishta on 9/3/16.

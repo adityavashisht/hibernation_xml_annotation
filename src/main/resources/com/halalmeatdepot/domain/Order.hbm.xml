@@ -3,7 +3,7 @@
         "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.halalmeatdepot.domain.XML.Order" table="CUSTOMER_ORDER">
+    <class name="com.halalmeatdepot.domain.xml.Order" table="CUSTOMER_ORDER">
         <id name="id" column="ORDER_ID" type="long">
             <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
                 <param name="sequence_name">ORDER_SEQ</param>
@@ -11,7 +11,7 @@
         </id>
 
         <many-to-one name="customer"
-                     class="com.halalmeatdepot.domain.XML.Customer"
+                     class="com.halalmeatdepot.domain.xml.Customer"
                      column="CUSTOMER_ID"
                      not-null="true"/>
 
@@ -21,7 +21,7 @@
         <list name="orderItemSet" cascade="all" inverse="true" lazy="false">
             <key column="ORDER_ID"/>
             <index column="ITEM_ENTRY" type="integer"/>
-            <one-to-many class="com.halalmeatdepot.domain.XML.OrderItem"/>
+            <one-to-many class="com.halalmeatdepot.domain.xml.OrderItem"/>
         </list>
 
         <property name="createDate" column="CREATE_DATE" not-null="true"/>

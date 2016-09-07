@@ -1,7 +1,5 @@
-package com.halalmeatdepot.domain.XML;
+package com.halalmeatdepot.domain.xml;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.Date;
 
 /**

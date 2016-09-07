@@ -1,4 +1,4 @@
-package com.halalmeatdepot.domain.XML;
+package com.halalmeatdepot.domain.annotation;
 
 import org.hibernate.annotations.ListIndexBase;
 
@@ -9,25 +9,34 @@ import java.util.List;
 /**
  * Created by vashishta on 8/30/16.
  */
-
+@Entity
+@Table(name="CUSTOMER")
 public class Customer {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="CUSTOMER_ID")
     private Long id;
 
+    @Column(name ="FIRST_NAME")
     private String firstName;
 
+    @Column(name = "LAST_NAME")
     private String lastName;
 
     private String email;
 
+    @OneToOne(mappedBy = "customerInProfile",cascade = CascadeType.ALL)
     private CustomerProfile customerProfile;
 
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    @ListIndexBase
     private List<Order> orderList=new ArrayList<>();
 
     public void addOrder(Order order){
         order.setCustomer(this);
         orderList.add(order);
     }
+
 
     public List<Order> getOrderList() {
         return orderList;
@@ -42,9 +51,10 @@ public class Customer {
     }
 
     public void setCustomerProfile(CustomerProfile customerProfile) {
-        customerProfile.setCustomer(this);
+        customerProfile.setCustomerInProfile(this);
         this.customerProfile = customerProfile;
     }
+
 
     public Long getId() {
         return id;

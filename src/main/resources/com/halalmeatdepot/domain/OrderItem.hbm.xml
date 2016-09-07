@@ -3,7 +3,7 @@
         "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.halalmeatdepot.domain.XML.OrderItem" table="ORDER_ITEM">
+    <class name="com.halalmeatdepot.domain.xml.OrderItem" table="ORDER_ITEM">
         <id name="id" column="ORDER_ITEM_ID" type="long">
             <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
                 <param name="sequence_name">ORDER_ITEM_SEQ</param>
@@ -12,7 +12,7 @@
 
         <property name="giftWrap" type="yes_no" column="GIFT_WRAP_FLAG" not-null="false"/>
         <property name="quantity" column="QUANTITY" not-null="true"/>
-        <many-to-one name="order" column="ORDER_ID" class="com.halalmeatdepot.domain.XML.Order"/>
+        <many-to-one name="order" column="ORDER_ID" class="com.halalmeatdepot.domain.xml.Order"/>
 
 
     </class>
