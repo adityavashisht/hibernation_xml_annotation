@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.halalmeatdepot.domain.Annotation.Address" table="ADDRESS">
+        <id name="id" column="ADDRESS_ID" type="long">
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="sequence_name">ADDR_SEQ</param>
+            </generator>
+        </id>
+
+
+        <property name="street" column="STREET" type="string" length="255" not-null="true"/>
+        <property name="city" column="CITY" type="string" length="255" not-null="true"/>
+        <property name="primary" column="PRIMARY_FLAG" type="yes_no"/>
+
+        <property name="addressType" column="ADDRESS_TYPE" not-null="true">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.halalmeatdepot.domain.Annotation.AddressType</param>
+                <param name="useNamed">true</param>
+            </type>
+        </property>
+        <many-to-one name="customerProfile" class="com.halalmeatdepot.domain.Annotation.CustomerProfile" column="customer_id"/>
+
+        <property name="createDate" column="CREATE_DATE"/>
+
+    </class>
+
+
+</hibernate-mapping>

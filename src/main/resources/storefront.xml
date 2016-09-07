@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+
+    <tx:annotation-driven/>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="password" value="Christal16"/>
+        <property name="username" value="postgres"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mappingResources">
+            <list>
+                <!--<value>com/halalmeatdepot/domain/Customer.hbm.xml</value>-->
+                <!--<value>com/halalmeatdepot/domain/CustomerProfile.hbm.xml</value>-->
+                <!--<value>com/halalmeatdepot/domain/Address.hbm.xml</value>-->
+                <!--<value>com/halalmeatdepot/domain/Order.hbm.xml</value>-->
+                <!--<value>com/halalmeatdepot/domain/OrderItem.hbm.xml</value>-->
+
+                <!-- Employee / Project many/many -->
+
+
+            </list>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
+                <prop key="cache.use_second_level_cache">false</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+            </props>
+        </property>
+    </bean>
+
+</beans>

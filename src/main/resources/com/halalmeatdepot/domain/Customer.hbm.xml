@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.halalmeatdepot.domain.Annotation.Customer" table="CUSTOMER">
+        <id name="id" column="CUSTOMER_ID" type="long">
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="sequence_name">CUSTOMER_SEQ</param>
+            </generator>
+        </id>
+
+        <property name="email" column="EMAIL" type="string" length="255" not-null="true"/>
+        <property name="firstName" column="FIRST_NAME" type="string"/>
+        <property name="lastName" column="LAST_NAME" type="string"/>
+
+        
+        <one-to-one name="customerProfile"
+                    class="com.halalmeatdepot.domain.Annotation.CustomerProfile"
+                    lazy="false"
+                    cascade="all"/>
+        
+        <list name="orderList" cascade="all" inverse="true">
+            <key column="customer_id"/>
+            <index column="item_entry" type="integer"/>
+            <one-to-many class="com.halalmeatdepot.domain.Annotation.Order"/>
+        </list>
+
+    </class>
+
+
+</hibernate-mapping>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.halalmeatdepot.domain.Annotation.Order" table="CUSTOMER_ORDER">
+        <id name="id" column="ORDER_ID" type="long">
+            <generator class="org.hibernate.id.enhanced.SequenceStyleGenerator">
+                <param name="sequence_name">ORDER_SEQ</param>
+            </generator>
+        </id>
+
+        <many-to-one name="customer"
+                     class="com.halalmeatdepot.domain.Annotation.Customer"
+                     column="CUSTOMER_ID"
+                     not-null="true"/>
+
+
+        <!-- Inverse means bi-directional association -->
+
+        <list name="orderItemSet" cascade="all" inverse="true" lazy="false">
+            <key column="ORDER_ID"/>
+            <index column="ITEM_ENTRY" type="integer"/>
+            <one-to-many class="com.halalmeatdepot.domain.Annotation.OrderItem"/>
+        </list>
+
+        <property name="createDate" column="CREATE_DATE" not-null="true"/>
+
+
+    </class>
+
+
+    <!--<query name="query.getOrderByFirstAndLastName">-->
+
+        <!--from Order as o-->
+        <!--where o.customer.firstName= :firstName-->
+        <!--and o.customer.lastName= :lastName-->
+
+
+    <!--</query>-->
+
+    <!--<query name="query.getOrderByFirstAndLastNameWithNew">-->
+        <!--select new com.halalmeatdepot.dto.OrderDTO (o.id, o.customer.firstName, o.customer.lastName)-->
+        <!--from Order as o-->
+        <!--where o.customer.firstName= :firstName-->
+        <!--and o.customer.lastName= :lastName-->
+    <!--</query>-->
+
+
+    <!--&lt;!&ndash; This will return a list with each item in the list as an array of objects &ndash;&gt;-->
+    <!--&lt;!&ndash; The object array index matches the order in which th from clause delcares the association for a join &ndash;&gt;-->
+    <!--<query name="query.getWithObjects">-->
+        <!--from Order o, Customer c-->
+        <!--where-->
+        <!--o.customer.id = c.id-->
+        <!--and-->
+        <!--o.customer.firstName=?-->
+    <!--</query>-->
+
+    <!--<sql-query name="sql.getOrderByFirstAndLastName">-->
+
+        <!--select-->
+        <!--order0_.ORDER_ID as ORDER_ID1_3_,-->
+        <!--order0_.CUSTOMER_ID as CUSTOMER2_3_,-->
+        <!--order0_.CREATE_DATE as CREATE_D3_3_-->
+        <!--from-->
+        <!--CUSTOMER_ORDER order0_ cross-->
+        <!--join-->
+        <!--CUSTOMER customer1_-->
+        <!--where-->
+        <!--order0_.CUSTOMER_ID=customer1_.CUSTOMER_ID-->
+        <!--and customer1_.FIRST_NAME=?-->
+        <!--and customer1_.LAST_NAME=?-->
+
+    <!--</sql-query>-->
+
+
+</hibernate-mapping>
