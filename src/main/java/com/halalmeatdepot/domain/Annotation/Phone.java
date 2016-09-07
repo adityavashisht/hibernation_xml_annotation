@@ -1,8 +1,11 @@
 package com.halalmeatdepot.domain.Annotation;
 
+import javax.persistence.Embeddable;
+
 /**
  * Created by vashishta on 9/3/16.
  */
+@Embeddable
 public class Phone {
 
     private String home;

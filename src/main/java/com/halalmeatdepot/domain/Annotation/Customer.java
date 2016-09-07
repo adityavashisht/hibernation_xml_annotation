@@ -25,13 +25,10 @@ public class Customer {
 
     private String email;
 
-/* ALL MAPPING: the owner shipping will need to be specified at other side by use mappedBy*/
-
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customerInProfile",cascade = CascadeType.ALL)
     private CustomerProfile customerProfile;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CUSTOMER_ID")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     @ListIndexBase
     private List<Order> orderList=new ArrayList<>();
 
@@ -39,6 +36,7 @@ public class Customer {
         order.setCustomer(this);
         orderList.add(order);
     }
+
 
     public List<Order> getOrderList() {
         return orderList;
@@ -53,9 +51,10 @@ public class Customer {
     }
 
     public void setCustomerProfile(CustomerProfile customerProfile) {
-        customerProfile.setCustomer(this);
+        customerProfile.setCustomerInProfile(this);
         this.customerProfile = customerProfile;
     }
+
 
     public Long getId() {
         return id;

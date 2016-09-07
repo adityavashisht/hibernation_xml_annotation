@@ -14,10 +14,9 @@ public class Address {
     private String street;
     private String city;
     private boolean primary;
-    private Date createDate;
     private CustomerProfile customerProfile;
     private AddressType addressType;
-
+    private Date createDate;
     public CustomerProfile getCustomerProfile() {
         return customerProfile;
     }
@@ -33,7 +32,6 @@ public class Address {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-
 
     public boolean isPrimary() {
         return primary;

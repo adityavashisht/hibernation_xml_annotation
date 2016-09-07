@@ -1,15 +1,26 @@
 package com.halalmeatdepot.domain.Annotation;
 
 
+import javax.persistence.*;
 
 /**
  * Created by vashishta on 9/1/16.
  */
+@Entity
+@Table(name = "ORDER_ITEM")
 public class OrderItem {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ORDER_ITEM_ID")
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "CUSTOMER_ORDER_ID")
     private Order order;
+
     private boolean giftWrap;
+
     private Integer quantity;
 
     public Integer getQuantity() {
@@ -35,6 +46,7 @@ public class OrderItem {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public Order getOrder() {
         return order;

@@ -4,7 +4,7 @@ package com.hmd.services;
  * Created by vashishta on 9/1/16.
  */
 
-import com.halalmeatdepot.domain.Annotation.*;
+import com.halalmeatdepot.domain.XML.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -29,7 +29,7 @@ import java.util.Date;
 })
 
 @Transactional
-public class OrderTest {
+public class OrderTestXML {
 
     @Autowired
     private SessionFactory sessionFactory;

@@ -1,7 +1,6 @@
 package com.halalmeatdepot.domain.Annotation;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -10,22 +9,25 @@ import java.util.Date;
 @Entity
 @Table ( name="ADDRESS")
 public class Address {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ADDRESS_ID")
     private Long id;
     private String street;
     private String city;
-    private boolean primary;
     private Date createDate;
+
+    @Column(name="PRIMARY_FLAG")
+    private boolean primary;
+
+
+    @ManyToOne
+    @JoinColumn(name="CUSTOMER_ID")
     private CustomerProfile customerProfile;
+
+    @Column(name = "ADDRESS_TYPE")
+    @Enumerated(EnumType.ORDINAL)
     private AddressType addressType;
-
-    public CustomerProfile getCustomerProfile() {
-        return customerProfile;
-    }
-
-    public void setCustomerProfile(CustomerProfile customerProfile) {
-        this.customerProfile = customerProfile;
-    }
 
     public Date getCreateDate() {
         return createDate;
@@ -33,6 +35,15 @@ public class Address {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+
+    public CustomerProfile getCustomerProfile() {
+        return customerProfile;
+    }
+
+    public void setCustomerProfile(CustomerProfile customerProfile) {
+        this.customerProfile = customerProfile;
     }
 
 
@@ -44,6 +55,7 @@ public class Address {
         this.primary = primary;
     }
 
+
     public AddressType getAddressType() {
         return addressType;
     }
@@ -51,6 +63,7 @@ public class Address {
     public void setAddressType(AddressType addressType) {
         this.addressType = addressType;
     }
+
 
     public Long getId() {
         return id;
