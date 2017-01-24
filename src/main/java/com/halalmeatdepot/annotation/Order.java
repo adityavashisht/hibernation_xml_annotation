@@ -1,4 +1,6 @@
-package com.halalmeatdepot.domain.annotation;
+package com.halalmeatdepot.annotation;
+
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +28,9 @@ public class Order implements Serializable {
 
     private LocalDateTime createDate;
 
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL
+            ,fetch = FetchType.EAGER
+    )
     private List<OrderItem> orderItemSet= new ArrayList<>();
 
     public void addOrderItem(OrderItem orderItem){

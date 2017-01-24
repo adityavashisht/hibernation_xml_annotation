@@ -4,7 +4,7 @@ package com.hmd.services;
  * Created by vashishta on 9/1/16.
  */
 
-import com.halalmeatdepot.domain.annotation.*;
+import com.halalmeatdepot.annotation.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -34,89 +34,6 @@ public class OrderTestAnnotation {
     @Autowired
     private SessionFactory sessionFactory;
 
-/*
-    @Test
-    @Rollback(value = false)
-    public void testOrder() {
-
-        Order order = new Order();
-        order.setCreateDate(LocalDateTime.now());
-
-        Phone phone = new Phone();
-        phone.setHome("1121212121");
-        phone.setMobile("2324232423432");
-        phone.setWork("13234343");
-
-        CustomerProfile customerProfile = new CustomerProfile();
-        customerProfile.setPhone(phone);
-
-
-        Customer customer = new Customer();
-        customer.setEmail("aditya@indasil.com");
-        customer.setFirstName("Aditya");
-        customer.setLastName("Vashisht");
-
-
-        customer.setCustomerProfile(customerProfile);
-        customerProfile.setCustomer(customer);
-
-        Address shipping = new Address();
-        shipping.setCustomer(customer);
-        shipping.setAddressType(AddressType.SHIPPING);
-        shipping.setCity("Chantilly");
-        shipping.setStreet("Test Street");
-        shipping.setCreateDate(new Date());
-        customer.addAddress(shipping);
-
-
-        Address billing = new Address();
-        billing.setCustomer(customer);
-        billing.setAddressType(AddressType.BILLING);
-        billing.setCity("Billing City");
-        billing.setStreet("Test Street Billing");
-        billing.setCreateDate(new Date());
-        customer.addAddress(billing);
-
-
-        Session s = sessionFactory.getCurrentSession();
-       /* s.setHibernateFlushMode(FlushMode.MANUAL);
-
-        s.save(customer);
-
-         s.flush();*/
-
-/*
-        order.setCustomer(customer);
-
-
-        OrderItem orderItem = new OrderItem();
-        orderItem.setGiftWrap(true);
-        // Tell the child who the parent is
-        orderItem.setOrder(order);
-        orderItem.setQuantity(2);
-
-
-        // Add the child to the collection of children
-        order.addItem(orderItem);
-
-        OrderItem orderItemTwo = new OrderItem();
-        orderItemTwo.setGiftWrap(true);
-        // Tell the child who the parent is
-        orderItemTwo.setOrder(order);
-        orderItemTwo.setQuantity(2);
-
-
-        // Add the child to the collection of children
-        order.addItem(orderItemTwo);
-
-
-        s.save(order);
-
-        s.save(customerProfile);
-
-
-    }
-*/
     @Test
     @Rollback(value = false)
     public void testCreateCustomer() {
@@ -246,6 +163,20 @@ public class OrderTestAnnotation {
         session.save(customer);
     }
     @Test
+    @Rollback(value = false)
+    public void testAddOrderItemToExistOrder(){
+        Session session = sessionFactory.getCurrentSession();
+        Order order = session.load(Order.class, 1L);
+
+        OrderItem orderItem = new OrderItem();
+        order.addOrderItem(orderItem);
+        orderItem.setGiftWrap(true);
+        orderItem.setQuantity(2);
+        session.save(order);
+    }
+
+
+    @Test
     public void testGetCustomer() {
         Session session = sessionFactory.getCurrentSession();
         Customer customer = session.load(Customer.class, 1L);
@@ -254,6 +185,13 @@ public class OrderTestAnnotation {
         System.out.println(customerProfile);
 
 
+    }
+
+    @Test
+    public void testGetOrder(){
+        Session session =sessionFactory.getCurrentSession();
+        Order order = session.load(Order.class,1L);
+        System.out.println(order);
     }
 
 }

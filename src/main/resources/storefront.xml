@@ -19,28 +19,26 @@
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-        <property name="packagesToScan" value="com.halalmeatdepot.domain.annotation"/>
+        <!--to use annotation-->
+        <property name="packagesToScan" value="com.halalmeatdepot.annotation"/>
         <property name="dataSource" ref="dataSource"/>
-        <property name="mappingResources">
-            <list>
+        <!--to use XML-->
+        <!--<property name="mappingResources">-->
+            <!--<list>-->
                 <!--<value>com/halalmeatdepot/domain/Customer.hbm.xml</value>-->
                 <!--<value>com/halalmeatdepot/domain/CustomerProfile.hbm.xml</value>-->
                 <!--<value>com/halalmeatdepot/domain/Address.hbm.xml</value>-->
                 <!--<value>com/halalmeatdepot/domain/Order.hbm.xml</value>-->
                 <!--<value>com/halalmeatdepot/domain/OrderItem.hbm.xml</value>-->
-
-                <!-- Employee / Project many/many -->
-
-
-            </list>
-        </property>
+            <!--</list>-->
+        <!--</property>-->
 
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
                 <prop key="cache.use_second_level_cache">false</prop>
                 <prop key="hibernate.format_sql">true</prop>
-                <!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
     </bean>

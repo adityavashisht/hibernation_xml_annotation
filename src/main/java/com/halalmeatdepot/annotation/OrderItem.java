@@ -1,4 +1,4 @@
-package com.halalmeatdepot.domain.annotation;
+package com.halalmeatdepot.annotation;
 
 
 import javax.persistence.*;
@@ -77,5 +77,10 @@ public class OrderItem {
         result = 31 * result + (isGiftWrap() ? 1 : 0);
         result = 31 * result + (getQuantity() != null ? getQuantity().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
